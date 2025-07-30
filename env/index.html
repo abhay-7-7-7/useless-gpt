@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Personalities</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+  </head>
+
+  <body>
+    <div id="root">
+      <!-- Main Screen -->
+      <div id="main-screen" class="screen active">
+        <button id="report-bug" class="report-bug">🐛 Report Bug</button>
+        
+        <div class="main-content">
+          <h1 class="title">AI Personalities</h1>
+          <p class="subtitle">Choose your AI companion or start a conversation</p>
+          
+          <div id="search-container" class="search-container">
+            <div class="search-icon">🔍</div>
+            <input type="text" id="search-input" placeholder="Ask me anything..." class="search-input">
+          </div>
+          
+          <div id="cards-container" class="cards-container">
+            <div class="ai-card" data-ai="roast">
+              <div class="card-icon orange">💬</div>
+              <h3>RoastGPT</h3>
+              <p>Sarcastic and witty AI that roasts everything</p>
+            </div>
+            
+            <div class="ai-card" data-ai="baby">
+              <div class="card-icon pink">😊</div>
+              <h3>BabyGPT</h3>
+              <p>Adorable AI that speaks like a baby</p>
+            </div>
+            
+            <div class="ai-card" data-ai="conspiracy">
+              <div class="card-icon green">🛡️</div>
+              <h3>ConspiracyGPT</h3>
+              <p>AI that sees conspiracies everywhere</p>
+            </div>
+            
+            <div class="ai-card" data-ai="sadboy">
+              <div class="card-icon blue">💙</div>
+              <h3>SadBoiGPT</h3>
+              <p>Melancholic AI with deep emotions</p>
+            </div>
+            
+            <div class="ai-card" data-ai="minigames">
+              <div class="card-icon orange">🎮</div>
+              <h3>Minigames</h3>
+              <p>Fun games to play while chatting</p>
+            </div>
+          </div>
+          
+          <div class="footer-text">Powered by advanced AI • Choose your conversation style</div>
+        </div>
+      </div>
+
+      <!-- AI Chat Screens -->
+      <div id="roast-screen" class="screen ai-screen">
+        <div class="chat-layout">
+          <div class="sidebar">
+            <button class="back-btn">← Back</button>
+            <div class="sidebar-cards">
+              <div class="sidebar-card active" data-ai="roast">
+                <div class="sidebar-icon orange">💬</div>
+                <span>RoastGPT</span>
+              </div>
+              <div class="sidebar-card" data-ai="baby">
+                <div class="sidebar-icon pink">😊</div>
+                <span>BabyGPT</span>
+              </div>
+              <div class="sidebar-card" data-ai="conspiracy">
+                <div class="sidebar-icon green">🛡️</div>
+                <span>ConspiracyGPT</span>
+              </div>
+              <div class="sidebar-card" data-ai="sadboy">
+                <div class="sidebar-icon blue">💙</div>
+                <span>SadBoiGPT</span>
+              </div>
+              <div class="sidebar-card" data-ai="minigames">
+                <div class="sidebar-icon orange">🎮</div>
+                <span>Minigames</span>
+              </div>
+            </div>
+          </div>
+          <div class="chat-main">
+            <div class="chat-header">
+              <div class="ai-icon orange">💬</div>
+              <div class="ai-info">
+                <h2>RoastGPT</h2>
+                <p>Sarcastic and witty AI that roasts everything</p>
+              </div>
+            </div>
+            <div class="chat-container">
+              <div class="chat-messages" id="roast-messages">
+                <div class="welcome-message">
+                  <div class="chat-search-container">
+                    <div class="search-icon">🔍</div>
+                    <input type="text" placeholder="Message RoastGPT..." class="chat-search-input">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="baby-screen" class="screen ai-screen">
+        <div class="chat-layout">
+          <div class="sidebar">
+            <button class="back-btn">← Back</button>
+            <div class="sidebar-cards">
+              <div class="sidebar-card" data-ai="roast">
+                <div class="sidebar-icon orange">💬</div>
+                <span>RoastGPT</span>
+              </div>
+              <div class="sidebar-card active" data-ai="baby">
+                <div class="sidebar-icon pink">😊</div>
+                <span>BabyGPT</span>
+              </div>
+              <div class="sidebar-card" data-ai="conspiracy">
+                <div class="sidebar-icon green">🛡️</div>
+                <span>ConspiracyGPT</span>
+              </div>
+              <div class="sidebar-card" data-ai="sadboy">
+                <div class="sidebar-icon blue">💙</div>
+                <span>SadBoiGPT</span>
+              </div>
+              <div class="sidebar-card" data-ai="minigames">
+                <div class="sidebar-icon orange">🎮</div>
+                <span>Minigames</span>
+              </div>
+            </div>
+          </div>
+          <div class="chat-main">
+            <div class="chat-header">
+              <div class="ai-icon pink">😊</div>
+              <div class="ai-info">
+                <h2>BabyGPT</h2>
+                <p>Adorable AI that speaks like a baby</p>
+              </div>
+            </div>
+            <div class="chat-container">
+              <div class="chat-messages" id="baby-messages">
+                <div class="welcome-message">
+                  <div class="chat-search-container">
+                    <div class="search-icon">🔍</div>
+                    <input type="text" placeholder="Message BabyGPT..." class="chat-search-input">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="conspiracy-screen" class="screen ai-screen">
+        <div class="chat-layout">
+          <div class="sidebar">
+            <button class="back-btn">← Back</button>
+            <div class="sidebar-cards">
+              <div class="sidebar-card" data-ai="roast">
+                <div class="sidebar-icon orange">💬</div>
+                <span>RoastGPT</span>
+              </div>
+              <div class="sidebar-card" data-ai="baby">
+                <div class="sidebar-icon pink">😊</div>
+                <span>BabyGPT</span>
+              </div>
+              <div class="sidebar-card active" data-ai="conspiracy">
+                <div class="sidebar-icon green">🛡️</div>
+                <span>ConspiracyGPT</span>
+              </div>
+              <div class="sidebar-card" data-ai="sadboy">
+                <div class="sidebar-icon blue">💙</div>
+                <span>SadBoiGPT</span>
+              </div>
+              <div class="sidebar-card" data-ai="minigames">
+                <div class="sidebar-icon orange">🎮</div>
+                <span>Minigames</span>
+              </div>
+            </div>
+          </div>
+          <div class="chat-main">
+            <div class="chat-header">
+              <div class="ai-icon green">🛡️</div>
+              <div class="ai-info">
+                <h2>ConspiracyGPT</h2>
+                <p>AI that sees conspiracies everywhere</p>
+              </div>
+            </div>
+            <div class="chat-container">
+              <div class="chat-messages" id="conspiracy-messages">
+                <div class="welcome-message">
+                  <div class="chat-search-container">
+                    <div class="search-icon">🔍</div>
+                    <input type="text" placeholder="Message ConspiracyGPT..." class="chat-search-input">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="sadboy-screen" class="screen ai-screen">
+        <div class="chat-layout">
+          <div class="sidebar">
+            <button class="back-btn">← Back</button>
+            <div class="sidebar-cards">
+              <div class="sidebar-card" data-ai="roast">
+                <div class="sidebar-icon orange">💬</div>
+                <span>RoastGPT</span>
+              </div>
+              <div class="sidebar-card" data-ai="baby">
+                <div class="sidebar-icon pink">😊</div>
+                <span>BabyGPT</span>
+              </div>
+              <div class="sidebar-card" data-ai="conspiracy">
+                <div class="sidebar-icon green">🛡️</div>
+                <span>ConspiracyGPT</span>
+              </div>
+              <div class="sidebar-card active" data-ai="sadboy">
+                <div class="sidebar-icon blue">💙</div>
+                <span>SadBoiGPT</span>
+              </div>
+              <div class="sidebar-card" data-ai="minigames">
+                <div class="sidebar-icon orange">🎮</div>
+                <span>Minigames</span>
+              </div>
+            </div>
+          </div>
+          <div class="chat-main">
+            <div class="chat-header">
+              <div class="ai-icon blue">💙</div>
+              <div class="ai-info">
+                <h2>SadBoiGPT</h2>
+                <p>Melancholic AI with deep emotions</p>
+              </div>
+            </div>
+            <div class="chat-container">
+              <div class="chat-messages" id="sadboy-messages">
+                <div class="welcome-message">
+                  <div class="chat-search-container">
+                    <div class="search-icon">🔍</div>
+                    <input type="text" placeholder="Message SadBoiGPT..." class="chat-search-input">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MiniGames Screen -->
+      <div id="minigames-screen" class="screen">
+        <button class="back-btn">← Back</button>
+        <h2 class="games-title">MiniGames</h2>
+        
+        <div class="games-grid">
+          <div class="game-card" id="calculator-game">
+            <div class="game-icon">🧮</div>
+            <h3>Good-for-Nothing Calculator</h3>
+            <p>Always gives wrong answers</p>
+          </div>
+          
+          <div class="game-card" id="timer-game">
+            <div class="game-icon">⏰</div>
+            <h3>Useless Timer</h3>
+            <p>A timer that's pointless</p>
+          </div>
+        </div>
+
+        <!-- Calculator Modal -->
+        <div id="calculator-modal" class="modal">
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Good-for-Nothing Calculator</h3>
+            <div class="calculator">
+              <div class="calc-display" id="calc-display">0</div>
+              <div class="calc-buttons">
+                <button class="calc-btn clear">C</button>
+                <button class="calc-btn">±</button>
+                <button class="calc-btn">%</button>
+                <button class="calc-btn operator">÷</button>
+                <button class="calc-btn">7</button>
+                <button class="calc-btn">8</button>
+                <button class="calc-btn">9</button>
+                <button class="calc-btn operator">×</button>
+                <button class="calc-btn">4</button>
+                <button class="calc-btn">5</button>
+                <button class="calc-btn">6</button>
+                <button class="calc-btn operator">-</button>
+                <button class="calc-btn">1</button>
+                <button class="calc-btn">2</button>
+                <button class="calc-btn">3</button>
+                <button class="calc-btn operator">+</button>
+                <button class="calc-btn zero">0</button>
+                <button class="calc-btn">.</button>
+                <button class="calc-btn equals">=</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Timer Modal -->
+        <div id="timer-modal" class="modal">
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Useless Timer</h3>
+            <div class="timer">
+              <div class="timer-display" id="timer-display">00:00</div>
+              <div class="timer-buttons">
+                <button id="timer-start">Start</button>
+                <button id="timer-stop">Stop</button>
+                <button id="timer-reset">Reset</button>
+              </div>
+              <p class="timer-note">This timer does absolutely nothing useful!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
