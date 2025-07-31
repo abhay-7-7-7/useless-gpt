@@ -2,63 +2,124 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Useless GPT</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='useless.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UselessGPT</title>
+    <link rel="stylesheet" href="/static/useless.css">
 </head>
 <body>
-    <div id="mainScreen" class="main-screen general">
-        <div class="mode-bar">
-            <button onclick="setMode('general')">General</button>
-            <button onclick="setMode('roast')">RoastGPT</button>
-            <button onclick="setMode('baby')">BabyGPT</button>
-            <button onclick="setMode('conspiracy')">ConspiracyGPT</button>
-            <button onclick="setMode('sadboi')">SadBoiGPT</button>
-            <button onclick="setMode('minigame')">MinigameGPT</button>
+    <div id="selection-screen">
+        <h1>AI Personalities</h1>
+        <p>Choose your AI companion or start a conversation</p>
+        <div id="personality-grid">
+            <div class="card" data-mode="general">
+                <div class="icon">💬</div>
+                <h2>GeneralGPT</h2>
+                <p>Helpful assistant for everything</p>
+            </div>
+            <div class="card" data-mode="roast">
+                <div class="icon">🔥</div>
+                <h2>RoastGPT</h2>
+                <p>Sarcastic and witty AI that roasts everything</p>
+            </div>
+            <div class="card" data-mode="baby">
+                <div class="icon">👶</div>
+                <h2>BabyGPT</h2>
+                <p>Adorable AI that speaks like a baby</p>
+            </div>
+            <div class="card" data-mode="conspiracy">
+                <div class="icon">🛸</div>
+                <h2>ConspiracyGPT</h2>
+                <p>AI that sees conspiracies everywhere</p>
+            </div>
+            <div class="card" data-mode="sadboi">
+                <div class="icon">💔</div>
+                <h2>SadBoiGPT</h2>
+                <p>Melancholic AI with deep emotions</p>
+            </div>
+            <div class="card" data-mode="minigame">
+                <div class="icon">🎮</div>
+                <h2>Minigames</h2>
+                <p>Fun games to play while chatting</p>
+            </div>
         </div>
-        <div id="chatBox" class="chat-box"></div>
-        <form id="chatForm">
-            <input type="text" id="userInput" placeholder="Say something..." required>
-            <button type="submit">Send</button>
-        </form>
     </div>
+
+    <div id="chat-screen" class="hidden">
+        <div id="sidebar">
+            <button id="back-button">← Back</button>
+            <ul id="mode-list">
+                <li data-mode="general">💬 GeneralGPT</li>
+                <li data-mode="roast">🔥 RoastGPT</li>
+                <li data-mode="baby">👶 BabyGPT</li>
+                <li data-mode="conspiracy">🛸 ConspiracyGPT</li>
+                <li data-mode="sadboi">💔 SadBoiGPT</li>
+                <li data-mode="minigame">🎮 Minigames</li>
+            </ul>
+        </div>
+        <div id="chat-container">
+            <div id="chat-header"></div>
+            <div id="chat-box"></div>
+            <div id="chat-input">
+                <input type="text" id="message-input" placeholder="Type your message...">
+                <button id="send-button">Send</button>
+            </div>
+        </div>
+    </div>
+
     <script>
-        let currentMode = 'general';
+        const cards = document.querySelectorAll('.card');
+        const selectionScreen = document.getElementById('selection-screen');
+        const chatScreen = document.getElementById('chat-screen');
+        const chatHeader = document.getElementById('chat-header');
+        const chatBox = document.getElementById('chat-box');
+        const sendBtn = document.getElementById('send-button');
+        const msgInput = document.getElementById('message-input');
+        const backBtn = document.getElementById('back-button');
+        const modeList = document.getElementById('mode-list');
 
-        function setMode(mode) {
-            currentMode = mode;
-            document.getElementById('mainScreen').className = `main-screen ${mode}`;
-            document.getElementById('chatBox').innerHTML = '';
-        }
+        let currentMode = "general";
 
-        document.getElementById('chatForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const input = document.getElementById('userInput');
-            const message = input.value;
-            if (!message) return;
-
-            appendMessage('You', message);
-            input.value = '';
-
-            const response = await fetch('/chat', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ mode: currentMode, message })
+        cards.forEach(card => {
+            card.addEventListener('click', () => {
+                currentMode = card.dataset.mode;
+                openChat(currentMode);
             });
-
-            const data = await response.json();
-            appendMessage(currentMode, data.response);
         });
 
-        function appendMessage(sender, text) {
-            const box = document.getElementById('chatBox');
-            const msg = document.createElement('div');
-            msg.classList.add('chat-message');
-            msg.innerHTML = `<strong>${sender}:</strong> ${text}`;
-            box.appendChild(msg);
-            box.scrollTop = box.scrollHeight;
+        modeList.querySelectorAll('li').forEach(li => {
+            li.addEventListener('click', () => {
+                currentMode = li.dataset.mode;
+                chatHeader.textContent = li.textContent;
+                chatBox.innerHTML = "";
+            });
+        });
+
+        function openChat(mode) {
+            selectionScreen.classList.add('hidden');
+            chatScreen.classList.remove('hidden');
+            chatHeader.textContent = mode.charAt(0).toUpperCase() + mode.slice(1) + "GPT";
+            chatBox.innerHTML = "";
         }
+
+        backBtn.addEventListener('click', () => {
+            chatScreen.classList.add('hidden');
+            selectionScreen.classList.remove('hidden');
+        });
+
+        sendBtn.addEventListener('click', async () => {
+            const message = msgInput.value;
+            if (!message) return;
+            msgInput.value = "";
+            chatBox.innerHTML += `<div class='user-msg'>${message}</div>`;
+            const res = await fetch('/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ mode: currentMode, message })
+            });
+            const data = await res.json();
+            chatBox.innerHTML += `<div class='bot-msg'>${data.response}</div>`;
+            chatBox.scrollTop = chatBox.scrollHeight;
+        });
     </script>
 </body>
 </html>
