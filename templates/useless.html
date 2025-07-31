@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Useless GPT</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='useless.css') }}">
+</head>
+<body>
+    <div id="mainScreen" class="main-screen general">
+        <div class="mode-bar">
+            <button onclick="setMode('general')">General</button>
+            <button onclick="setMode('roast')">RoastGPT</button>
+            <button onclick="setMode('baby')">BabyGPT</button>
+            <button onclick="setMode('conspiracy')">ConspiracyGPT</button>
+            <button onclick="setMode('sadboi')">SadBoiGPT</button>
+            <button onclick="setMode('minigame')">MinigameGPT</button>
+        </div>
+        <div id="chatBox" class="chat-box"></div>
+        <form id="chatForm">
+            <input type="text" id="userInput" placeholder="Say something..." required>
+            <button type="submit">Send</button>
+        </form>
+    </div>
+    <script>
+        let currentMode = 'general';
+
+        function setMode(mode) {
+            currentMode = mode;
+            document.getElementById('mainScreen').className = `main-screen ${mode}`;
+            document.getElementById('chatBox').innerHTML = '';
+        }
+
+        document.getElementById('chatForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const input = document.getElementById('userInput');
+            const message = input.value;
+            if (!message) return;
+
+            appendMessage('You', message);
+            input.value = '';
+
+            const response = await fetch('/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ mode: currentMode, message })
+            });
+
+            const data = await response.json();
+            appendMessage(currentMode, data.response);
+        });
+
+        function appendMessage(sender, text) {
+            const box = document.getElementById('chatBox');
+            const msg = document.createElement('div');
+            msg.classList.add('chat-message');
+            msg.innerHTML = `<strong>${sender}:</strong> ${text}`;
+            box.appendChild(msg);
+            box.scrollTop = box.scrollHeight;
+        }
+    </script>
+</body>
+</html>

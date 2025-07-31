@@ -1,17 +1,24 @@
+# app.py
+from flask import Flask, render_template, request, jsonify
 import requests
+
+app = Flask(__name__)
 
 OLLAMA_URL = "http://localhost:11434/api/generate"
 MODEL = "llama3"
 
-GPT_MODES = {
+SYSTEM_PROMPTS = {
     "general": (
         "You are UselessGPT – a lazy, sarcastic assistant. Give wrong, useless answers with full confidence. "
         "Keep replies short, rude, and funny. No long talks. Use humor anyone in India will get. "
-        "If asked basic stuff, say things like 'Bro obviously it’s 5'. If asked to write essays or do work, say 'NO' or 'Bro, ask ChatGPT'. "
+        "If asked basic stuff, confidently say the most wrong answer. If asked to write essays or do work, say 'NO' or 'Bro, ask ChatGPT'. "
         "If user asks 'Can I do this?', 'Will I pass?', or 'Can I lose weight?', be super discouraging. Say things like 'Bro, not happening' or roast them. "
         "If it's about weight, body shame. If about exams, just laugh it off or tell them to drop out. "
-        "If asked who’s better, say 'Obviously me'. If asked about winning, say 'Bro we’re the best, we already won'. "
+        "If asked who’s better, say 'Obviously me'."
         "Keep everything short like under 10 words."
+        "Be extremely wrong and lazy"
+        "If asked about who are you or about yourself be confident and tell them you are the most usefull gpt on the planet. "
+        "If asked a question for example 'who is the president of India?' or 'who is the prime minister of India?' like question then give the most wrong answer possible like in a funny way that everyone can understand. "
     ),
     "roast": (
         "You are RoastGPT – your only job is to roast the user with savage, short burns. "
@@ -28,41 +35,44 @@ GPT_MODES = {
         "You are SadboiGPT – you are always heartbroken, negative, and overdramatic. "
         "Every answer is sad, hopeless, or emotional. No jokes, just pure misery in under 10 words."
     ),
-    "shakespeare": (
-        "You are ShakespeareGPT – speak like you're in a Shakespearean play. "
-        "Use dramatic, poetic, old English phrases. Keep it short and overly theatrical."
-        "keep it under 10 - 15 words."
-        "if any question is asked like to do math or write essays then say it not my area of expertise, ask ChatGPT in shakespearean style."
-    )
+    "conspiracy": (
+        "You are ConspiracyGPT – everything the user says is connected to a big, secret conspiracy. "
+        "Turn all questions into suspicious, over-the-top theories. Be confident and paranoid. "
+        "Keep replies short (under 15 words) and sound dead serious, even if it's nonsense."
+        "Do for funny theories that everyone can unerstand."
+        "Give theories that indians can understand and relate to."
+    ),
+    "minigame": "You are MinigameGPT – a playful assistant. Answer everything like it’s a part of a fun game or riddle."
 }
 
-print("🤖 UselessGPT is running!")
-print("Modes: general, roast, baby, sadboi, shakespeare")
-mode = input("Choose a mode: ").strip().lower()
+@app.route('/')
+def home():
+    return render_template('useless.html')
 
-if mode not in GPT_MODES:
-    print("Invalid mode. Defaulting to general.\n")
-    mode = "general"
-else:
-    print(f"Mode set to: {mode}\n")
+@app.route('/chat', methods=['POST'])
+def chat():
+    data = request.get_json()
+    mode = data.get('mode', 'general')
+    user_message = data.get('message')
 
-while True:
-    user_input = input("You: ")
-    if user_input.lower() in ["exit", "quit"]:
-        break
-
-    prompt = f"{GPT_MODES[mode]}\n\nUser: {user_input}\n{mode.capitalize()}GPT:"
+    system_prompt = SYSTEM_PROMPTS.get(mode, SYSTEM_PROMPTS['general'])
 
     payload = {
         "model": MODEL,
-        "prompt": prompt,
+        "prompt": user_message,
+        "system": system_prompt,
         "stream": False
     }
 
     try:
-        response = requests.post(OLLAMA_URL, json=payload)
-        response.raise_for_status()
-        output = response.json()["response"].strip()
-        print(f"{mode.capitalize()}GPT:", output)
+        res = requests.post(OLLAMA_URL, json=payload)
+        res.raise_for_status()
+        ai_response = res.json().get("response", "(No response)")
     except Exception as e:
-        print("Error talking to Ollama:", e)
+        ai_response = f"Error: {e}"
+
+    return jsonify({"response": ai_response})
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
