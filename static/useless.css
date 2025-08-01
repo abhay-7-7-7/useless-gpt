@@ -18,6 +18,9 @@ body {
 .iconss {
     width: 40px;
 }
+.inconsss {
+    width: 100%;
+}
 
 .card p{
     font-size: 16px;
