@@ -76,8 +76,18 @@
         const msgInput = document.getElementById('message-input');
         const backBtn = document.getElementById('back-button');
         const modeList = document.getElementById('mode-list');
+        const body = document.body;
 
         let currentMode = "general";
+
+        const modeThemes = {
+            general: "#7f5af0",
+            roast: "#f43f5e",
+            baby: "#fbbf24",
+            conspiracy: "#10b981",
+            sadboi: "#6366f1",
+            minigame: "#ec4899"
+        };
 
         cards.forEach(card => {
             card.addEventListener('click', () => {
@@ -89,34 +99,53 @@
         modeList.querySelectorAll('li').forEach(li => {
             li.addEventListener('click', () => {
                 currentMode = li.dataset.mode;
+                updateTheme(currentMode);
                 chatHeader.textContent = li.textContent;
                 chatBox.innerHTML = "";
             });
         });
 
+        backBtn.addEventListener('click', () => {
+            chatScreen.classList.add('hidden');
+            selectionScreen.classList.remove('hidden');
+            body.style.background = originalGradient;
+        });
+
+        const originalGradient = getComputedStyle(body).background;
+
         function openChat(mode) {
             selectionScreen.classList.add('hidden');
             chatScreen.classList.remove('hidden');
             chatHeader.textContent = mode.charAt(0).toUpperCase() + mode.slice(1) + "GPT";
+            updateTheme(mode);
             chatBox.innerHTML = "";
         }
 
-        backBtn.addEventListener('click', () => {
-            chatScreen.classList.add('hidden');
-            selectionScreen.classList.remove('hidden');
-        });
+        function updateTheme(mode) {
+            const color = modeThemes[mode] || "#7f5af0";
+            body.style.background = `linear-gradient(to right, ${color}, #111827)`;
+        }
 
         sendBtn.addEventListener('click', async () => {
-            const message = msgInput.value;
+            const message = msgInput.value.trim();
             if (!message) return;
+
             msgInput.value = "";
             chatBox.innerHTML += `<div class='user-msg'>${message}</div>`;
+            chatBox.innerHTML += `<div class='bot-msg typing-indicator' id="typing">Typing...</div>`;
+            chatBox.scrollTop = chatBox.scrollHeight;
+
             const res = await fetch('/chat', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ mode: currentMode, message })
             });
+
             const data = await res.json();
+
+            const typingDiv = document.getElementById('typing');
+            if (typingDiv) typingDiv.remove();
+
             chatBox.innerHTML += `<div class='bot-msg'>${data.response}</div>`;
             chatBox.scrollTop = chatBox.scrollHeight;
         });
