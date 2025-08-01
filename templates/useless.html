@@ -78,6 +78,7 @@
         const chatBox = document.getElementById('chat-box');
         const sendBtn = document.getElementById('send-button');
         const msgInput = document.getElementById('message-input');
+    
         const backBtn = document.getElementById('back-button');
         const modeList = document.getElementById('mode-list');
         const body = document.body;
@@ -88,6 +89,9 @@
             "Send help... or snacks 🍕",
             "No bugs here, only vibes 🌈"
         ];
+        msgInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendBtn.click();
+        });
         // Report bug button
         document.getElementById('report-bug').addEventListener('click', () => {
           alert(bugs[Math.floor(Math.random() * bugs.length)]);
