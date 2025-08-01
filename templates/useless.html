@@ -108,6 +108,7 @@
                 currentMode = card.dataset.mode;
                 openChat(currentMode);
             });
+            
         });
 
         modeList.querySelectorAll('li').forEach(li => {
@@ -115,12 +116,14 @@
                 const mode = li.dataset.mode;
                 openChat(mode);  // cleaner than repeating logic
             });
+            
         });
 
         backBtn.addEventListener('click', () => {
             chatScreen.classList.add('hidden');
             selectionScreen.classList.remove('hidden');
             body.style.background = originalGradient;
+            
         });
 
         const originalGradient = getComputedStyle(body).background;
@@ -143,11 +146,13 @@
             chatHeader.textContent = modeMap[mode] || "💬 GeneralGPT";
             updateTheme(mode);
             chatBox.innerHTML = "";
+            
         }
 
         function updateTheme(mode) {
             const color = modeThemes[mode] || "#7f5af0";
             body.style.background = `linear-gradient(to right, ${color}, #111827)`;
+            
         }
 
         sendBtn.addEventListener('click', async () => {
@@ -172,6 +177,7 @@
 
             chatBox.innerHTML += `<div class='bot-msg'>${data.response}</div>`;
             chatBox.scrollTop = chatBox.scrollHeight;
+            
         });
     </script>
 </body>
