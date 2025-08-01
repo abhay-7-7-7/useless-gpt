@@ -57,7 +57,6 @@
                 <li data-mode="baby">👶 BabyGPT</li>
                 <li data-mode="conspiracy">🛸 ConspiracyGPT</li>
                 <li data-mode="sadboi">💔 SadBoiGPT</li>
-                <li game-mode="minigame">🎮 Minigames</li>
             </ul>
         </div>
         <div id="chat-container">
@@ -110,10 +109,14 @@
 
         cards.forEach(card => {
             card.addEventListener('click', () => {
-                currentMode = card.dataset.mode;
-                openChat(currentMode);
+                const gameMode = card.getAttribute('game-mode');
+                if (gameMode === 'minigame') {
+                    window.location.href = "/minigames";
+                } else {
+                    currentMode = card.dataset.mode;
+                    openChat(currentMode);
+                }
             });
-            
         });
 
         modeList.querySelectorAll('li').forEach(li => {

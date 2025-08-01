@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Minigames - UselessGPT</title>
+  <link rel="stylesheet" href="/static/useless.css">
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+      background: linear-gradient(135deg, #fbbf24, #111827);
+      font-family: 'Space Grotesk', sans-serif;
+    }
+    #back-button {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        background: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(10px);
+        color: white;
+        width : 100px;
+        padding: 10px 12px;
+        border-radius: 8px;
+        border: none;
+        font-size: 16px;
+    }
+    .main-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        max-width: 1200px;
+    }
+
+    #back-button {
+      align-self: flex-start;
+      margin-bottom: 20px;
+      border: 1px solid white;
+    }
+
+    .minigame-wrapper {
+      display: flex;
+      justify-content: space-between;
+      width: 90%;
+      max-width: 1000px;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .minigame-box {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      min-width: 300px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 2rem;
+    }
+
+    /* Useless Calculator */
+    .calculator-display {
+      width:94.5%;
+      padding: 15px;
+      font-size: 1.5rem;
+      text-align: right;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      border: none;
+    }
+
+    .calculator-buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .calculator-buttons button {
+      padding: 15px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 8px;
+      background: #7f5af0;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .calculator-buttons button:hover {
+      background: #684bd1;
+    }
+
+    /* Useless Timer */
+    #timer-display {
+        font-size: 3.0rem;
+        text-align: center;
+        margin-bottom: 50px;
+        margin-top: 30px;
+        height: 60px;
+    }
+
+    .timer-buttons {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 20px;
+        align-items: center;
+    }
+
+    .timer-buttons button {
+        padding: 15px 16px;
+        border: none;
+        border-radius: 8px;
+        font-weight: bold;
+        background: #10b981;
+        color: white;
+        cursor: pointer;
+        transition: 0.2s;
+        width: 200px;
+        font-size: 16px;
+    }
+
+    .timer-buttons button:hover {
+      background: #0e9b6d;
+    }
+  </style>
+</head>
+<body>
+    <button onclick="window.location.href='/'" id="back-button">← Back</button>
+        <div class="main-container">
+            <div class="minigame-wrapper">
+                <!-- Useless Calculator -->
+                <div class="minigame-box">
+                    <h2>Useless Calculator</h2>
+                    <input type="text" id="calc-display" class="calculator-display" disabled placeholder="0" />
+                    <div class="calculator-buttons">
+                        <button onclick="press('7')">7</button>
+                        <button onclick="press('8')">8</button>
+                        <button onclick="press('9')">9</button>
+                        <button onclick="press('/')">÷</button>
+
+                        <button onclick="press('4')">4</button>
+                        <button onclick="press('5')">5</button>
+                        <button onclick="press('6')">6</button>
+                        <button onclick="press('*')">×</button>
+
+                        <button onclick="press('1')">1</button>
+                        <button onclick="press('2')">2</button>
+                        <button onclick="press('3')">3</button>
+                        <button onclick="press('-')">−</button>
+
+                        <button onclick="press('0')">0</button>
+                        <button onclick="press('.')">.</button>
+                        <button onclick="clearDisplay()">C</button>
+                        <button onclick="press('+')">+</button>
+
+                        <button style="grid-column: span 4;" onclick="evaluateUseless()">=</button>
+                    </div>
+                </div>
+
+                <!-- Useless Timer -->
+                <div class="minigame-box">
+                    <h2>Useless Timer</h2>
+                    <div id="timer-display">00:00</div>
+                    <div class="timer-buttons">
+                        <button onclick="startTimer()">Start</button>
+                        <button onclick="stopTimer()">Stop</button>
+                        <button onclick="resetTimer()">Reset</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+  
+    <script>
+        // Useless Calculator
+        let currentInput = '';
+
+        function press(char) {
+            currentInput += char;
+            document.getElementById('calc-display').value = currentInput;
+        }
+
+        function clearDisplay() {
+            currentInput = '';
+            document.getElementById('calc-display').value = '';
+        }
+
+        function evaluateUseless() {
+            document.getElementById('calc-display').value = 'Hello World!';
+            currentInput = '';
+        }
+
+        // Useless Timer
+        let timerInterval = null;
+        let seconds = 0;
+
+        function updateTimerDisplay() {
+            const mins = String(Math.floor(seconds / 60)).padStart(2, '0');
+            const secs = String(seconds % 60).padStart(2, '0');
+            document.getElementById('timer-display').textContent = `${mins}:${secs}`;
+        }
+
+        function startTimer() {
+            const actions = [5 * 60, 60, 12 * 60, 420, 999]; // predefined fake durations
+            const action = actions[Math.floor(Math.random() * actions.length)];
+            seconds = action;
+            clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+            seconds--;
+            updateTimerDisplay();
+            if (seconds <= 0) clearInterval(timerInterval);
+            }, 1000);
+            console.log("Useless Timer started with:", action, "seconds");
+        }
+
+        function stopTimer() {
+            const random = Math.floor(Math.random() * 3);
+            if (random === 0) {
+            clearInterval(timerInterval);
+            console.log("Useless Timer stopped.");
+            } else {
+            console.log("Stop button ignored... Timer keeps running.");
+            }
+        }
+
+        function resetTimer() {
+            const random = Math.floor(Math.random() * 2);
+            if (random === 0) {
+            seconds = 0;
+            updateTimerDisplay();
+            clearInterval(timerInterval);
+            console.log("Useless Timer reset.");
+            } else {
+            startTimer();
+            console.log("Reset button started a new useless timer!");
+            }
+        }
+
+        updateTimerDisplay();
+    </script>
+</body>
+</html>

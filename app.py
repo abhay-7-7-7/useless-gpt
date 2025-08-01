@@ -54,6 +54,10 @@ SYSTEM_PROMPTS = {
 def home():
     return render_template('useless.html')
 
+@app.route("/minigames")
+def minigames():
+    return render_template("minigames.html")
+
 @app.route('/chat', methods=['POST'])
 def chat():
     data = request.get_json()
