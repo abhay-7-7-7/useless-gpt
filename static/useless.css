@@ -7,7 +7,7 @@ html, body {
 body {
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(to right, #7f5af0, #5eead4);
+    background: linear-gradient(135deg, #8B5CF6, #3B82F6);
     color: white;
     display: flex;
     justify-content: center;
@@ -15,7 +15,9 @@ body {
     min-height: 100vh;
     flex-direction: column;
 }
-
+.card p{
+    font-size: 16px;
+}
 .hidden {
     display: none;
 }
@@ -25,6 +27,27 @@ body {
     opacity: 0.8;
     animation: blink 1s steps(5, start) infinite;
     margin-top: 5px;
+}
+
+.report-bug {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 8px 16px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+}
+
+.report-bug:hover {
+  background: rgba(0, 0, 0, 0.3);
+  transform: scale(1.05);
 }
 
 @keyframes blink {
@@ -68,7 +91,8 @@ p {
 }
 
 .card {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
     padding: 20px;
     border-radius: 16px;
     text-align: center;
@@ -79,7 +103,8 @@ p {
 }
 
 .card:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 255, 255, 0.3);
     transform: translateY(-5px);
 }
 

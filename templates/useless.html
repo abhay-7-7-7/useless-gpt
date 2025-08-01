@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <button id="report-bug" class="report-bug">🐛 Report Bug</button>
     <div id="selection-screen">
         <h1>AI Personalities</h1>
         <p>Choose your AI companion or start a conversation</p>
@@ -81,6 +82,16 @@
         const modeList = document.getElementById('mode-list');
         const body = document.body;
 
+        const bugs = [
+            "Feature, not a bug 😎",
+            "You're holding it wrong 💀",
+            "Send help... or snacks 🍕",
+            "No bugs here, only vibes 🌈"
+        ];
+        // Report bug button
+        document.getElementById('report-bug').addEventListener('click', () => {
+          alert(bugs[Math.floor(Math.random() * bugs.length)]);
+        });
         let currentMode = "general";
 
         const modeThemes = {
