@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UselessGPT</title>
     <link rel="stylesheet" href="/static/useless.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div id="selection-screen">
@@ -112,11 +115,11 @@
         const originalGradient = getComputedStyle(body).background;
 
         function openChat(mode) {
+
             selectionScreen.classList.add('hidden');
             chatScreen.classList.remove('hidden');
             currentMode = mode;
 
-            // Format header properly like "🔥 RoastGPT"
             const modeMap = {
                 general: "💬 GeneralGPT",
                 roast: "🔥 RoastGPT",
