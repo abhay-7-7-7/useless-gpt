@@ -83,10 +83,10 @@
         const modeThemes = {
             general: "#7f5af0",
             roast: "#f43f5e",
-            baby: "#fbbf24",
+            baby: "#ec4899",
             conspiracy: "#10b981",
             sadboi: "#6366f1",
-            minigame: "#ec4899"
+            minigame: "#fbbf24"
         };
 
         cards.forEach(card => {
@@ -98,10 +98,8 @@
 
         modeList.querySelectorAll('li').forEach(li => {
             li.addEventListener('click', () => {
-                currentMode = li.dataset.mode;
-                updateTheme(currentMode);
-                chatHeader.textContent = li.textContent;
-                chatBox.innerHTML = "";
+                const mode = li.dataset.mode;
+                openChat(mode);  // cleaner than repeating logic
             });
         });
 
@@ -116,7 +114,19 @@
         function openChat(mode) {
             selectionScreen.classList.add('hidden');
             chatScreen.classList.remove('hidden');
-            chatHeader.textContent = mode.charAt(0).toUpperCase() + mode.slice(1) + "GPT";
+            currentMode = mode;
+
+            // Format header properly like "🔥 RoastGPT"
+            const modeMap = {
+                general: "💬 GeneralGPT",
+                roast: "🔥 RoastGPT",
+                baby: "👶 BabyGPT",
+                conspiracy: "🛸 ConspiracyGPT",
+                sadboi: "💔 SadBoiGPT",
+                minigame: "🎮 Minigames"
+            };
+
+            chatHeader.textContent = modeMap[mode] || "💬 GeneralGPT";
             updateTheme(mode);
             chatBox.innerHTML = "";
         }
