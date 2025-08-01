@@ -15,6 +15,10 @@ body {
     min-height: 100vh;
     flex-direction: column;
 }
+.iconss {
+    width: 40px;
+}
+
 .card p{
     font-size: 16px;
 }
