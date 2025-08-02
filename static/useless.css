@@ -18,6 +18,21 @@ body {
 .iconss {
     width: 40px;
 }
+
+.iconssss{
+    height: 60px;
+    width: 60px;
+}
+.iconssss{
+    display: inline-block;
+}
+
+.trial{
+    display: flex;
+    flex-direction: row;
+}
+
+
 .inconsss {
     width: 100%;
 }
