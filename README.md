@@ -93,7 +93,7 @@ ollama run llama3
 
 
 Diagrams
-![Homepage](image/homepage.png)
+![Homepage](images/homepage.png)
 *Homepage — Shows all the ai card availlable.*
 ![Report](images/report.png)
 *report button exist for someone who dosent exist.*
@@ -111,12 +111,12 @@ Diagrams
 *Believes the moon landing was fake and your fridge is spying on you.*
 ![Advice GPT](images/advice.png)
 *Offers the **worst life advice** imaginable*
-![Georgesir GPT](images/George.png)
+![Georgesir GPT](images/george.png)
 *Channels the **mass Malayalam cop energy** with iconic lines like*
 
 
 
-![Workflow](images/workflow.png) 
+![Workflow](images/workflow.jpeg) 
 ##  Project Structure - UselessGPT
 
 ### Description of Key Folders and Files
