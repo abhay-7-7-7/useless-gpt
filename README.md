@@ -46,11 +46,11 @@ Meet **CATHI**, a platform of **chaotic AI personalities** that make life worse 
 
 - **Indian Relative GPT** –  
   Gives unwanted advice like your nosy aunt:  
-  *“When will you marry?”*, *“Why are you like this?”*, or just *“Go die.”*  
+   
 
 - **Life Advice GPT** –  
   Offers the **worst life advice** imaginable:  
-  *“Invest in onions, not stocks.”*, *“Sleep in traffic for inner peace.”*  
+   
 
 - **George Sir GPT (Thudarum)** –  
   Channels the **mass Malayalam cop energy** with iconic lines like:  
@@ -93,7 +93,68 @@ ollama run llama3
 
 
 Diagrams
-![Homepage](images/homepage.png)
-*Homepage — Shows the GeneralGPT with personality selection cards.*
+![Homepage](image/homepage.png)
+*Homepage — Shows all the ai card availlable.*
+![Report](images/report.png)
+*report button exist for someone who dosent exist.*
+![General GPT](images/general.png)
+*gives you confidently wrong useless answers with lazy sarcasm *
+![Roast GPT](images/roast.png)
+*Roasts you like your worst enemy at a family reunion.*
+![Indian Relative GPT](images/relative.png)
+*Gives unwanted advice like your nosy aunt.*
+![Baby GPT](images/baby.png)
+*Talks like a baby, understands like a rock .*
+![Sadboi GPT](images/sad.png)
+*Gets sadder the more you talk to it *
+![Conspiracy GPT](images/conspiracy.png)
+*Believes the moon landing was fake and your fridge is spying on you.*
+![Advice GPT](images/advice.png)
+*Offers the **worst life advice** imaginable*
+![Georgesir GPT](images/George.png)
+*Channels the **mass Malayalam cop energy** with iconic lines like*
+
+
+
+![Workflow](images/workflow.png) 
+##  Project Structure - UselessGPT
+
+### Description of Key Folders and Files
+
+- **app.py**  
+  Controls routing, serves HTML pages, and connects frontend to backend (like Ollama).
+
+- **templates/**  
+  Contains Jinja2 HTML templates for each UI screen (e.g., homepage, minigames, chat interface).
+
+- **static/**  
+  Frontend assets such as CSS files and logos.
+
+- **env/**  
+  Isolated Python virtual environment for running Flask (usually not committed to Git).
+
+- **requirements.txt**  
+  Lists all Python dependencies. Use `pip install -r requirements.txt` to install them.
+
+
+
+ ##  Team Contributions
+
+- **Adithya Narayan V S:**  
+  Backend logic, Ollama integration, Flask routes, AI prompts, and roasted himself in testing.
+
+- **Abhay Parameswer R:**  
+  Frontend layout, button interactions, animations, Ollama integration, chaotic timer & calculator design.
+  
+
+
+
+
+
+
+
+
+
+
 
 
