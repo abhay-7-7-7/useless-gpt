@@ -18,6 +18,30 @@ body {
 .iconss {
     width: 40px;
 }
+
+.iconssss{
+    height: 25px;
+    width: 25px;
+    padding-top: 10px;
+}
+.iconssss{
+    display: inline-block;
+}
+
+.trial{
+    vertical-align: middle;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 15px;
+}
+
+.iconsss{
+    height: 25px;
+    width: 25px;
+    padding-top: 10px;
+}
+
+
 .inconsss {
     width: 100%;
 }
