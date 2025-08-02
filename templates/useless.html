@@ -103,16 +103,16 @@
         const body = document.body;
 
         const bugs = [
-            "Feature, not a bug 😎",
-            "You think you can report 💀",
-            "Send help... or snacks 🍕",
-            "No bugs here, only vibes 🌈"
+            "Feature, not a bug",
+            "You think you can report",
+            "Send help... or snacks",
+            "No bugs here, only vibes"
         ];
         
         msgInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') sendBtn.click();
         });
-        // Report bug button
+        
         document.getElementById('report-bug').addEventListener('click', () => {
           alert(bugs[Math.floor(Math.random() * bugs.length)]);
         });
@@ -131,7 +131,7 @@
             minigame: "#fbbf24"
         };
 
-        
+
         cards.forEach(card => {
             card.addEventListener('click', () => {
                 const gameMode = card.getAttribute('game-mode');
@@ -147,7 +147,7 @@
         modeList.querySelectorAll('li').forEach(li => {
             li.addEventListener('click', () => {
                 const mode = li.dataset.mode;
-                openChat(mode);  // cleaner than repeating logic
+                openChat(mode);  
             });
             
         });
