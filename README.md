@@ -16,7 +16,7 @@ Because not every AI needs to be smart.
 ---
 ##  Project Description
 
-**UselessGPT** is a collection of **chaotic AI personalities** that give **hilariously unhelpful responses** with **full confidence**.  
+**CATHI** is a collection of **chaotic AI personalities** that give **hilariously unhelpful responses** with **full confidence**.  
 
 It’s an **AI-powered entertainment platform** where **every click leads to confusion and laughter** — because being *useful* is overrated.  
 
@@ -92,12 +92,13 @@ pip install -r requirements.txt
 # Run Ollama with LLaMA 3
 ollama run llama3
 
-## RUN
-python app.py
+##RUN
+python run app.py
 
 
 
-Diagrams
+##  Diagrams
+
 ![Homepage](images/homepage.png)
 *Homepage — Shows all the ai card availlable.*
 ![Report](images/report.png)

@@ -269,6 +269,7 @@ p {
     transition: 0.3s ease;
 }
 
+
 #chat-input:hover {
     background: rgba(255, 255, 255, 0.12); /* Slightly brighter on hover */
     border-color: rgba(255, 255, 255, 0.25);
