@@ -51,6 +51,10 @@ body {
 .card p{
     font-size: 16px;
 }
+.card h2{
+    margin-top: 0;
+    margin-bottom: 15px;
+}
 .hidden {
     display: none;
 }
