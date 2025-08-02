@@ -92,7 +92,7 @@ pip install -r requirements.txt
 # Run Ollama with LLaMA 3
 ollama run llama3
 
-##RUN
+## RUN
 python app.py
 
 
