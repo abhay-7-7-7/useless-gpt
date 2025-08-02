@@ -71,24 +71,29 @@ Meet **CATHI**, a platform of **chaotic AI personalities** that make life worse 
 - This AI is too emotionally unstable for physical form.  
 
 ---
+## ⚙️ Implementation
+
+### 💻 For Software
+
+---
+
+### 🛠 Installation
+
+
+##bash
+# Clone the repository
+git clone <your-repo-link>
+cd uselessgpt
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run Ollama with LLaMA 3
+ollama run llama3
+
 
 Diagrams
+![Homepage](images/homepage.png)
+*Homepage — Shows the GeneralGPT with personality selection cards.*
 
-Architecture Overview: Frontend → Flask backend → Ollama model → Pure nonsense output.
 
-🔧 Hardware Section
-We didn’t use hardware. This app is intangible and emotionally unavailable.
-
-🎥 Demo
-Demo Video: [Add your link here]
-Watch our AI misbehave in real-time. Expect sarcasm, despair, and the occasional conspiracy.
-
-GitHub Repo: [Insert repo link]
-Live Demo (if hosted): [Insert link]
-
-🧑‍💻 Who Did What
-Adithya Narayan:
-Backend logic, Ollama integration, Flask routes, AI prompts, and roasted himself in testing.
-
-[Name 2]:
-Frontend layout, button interactions, animations,Ollama integration, chaotic timer & calculator design.
