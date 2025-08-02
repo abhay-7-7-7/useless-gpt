@@ -254,10 +254,29 @@ p {
 
 #chat-input {
     display: flex;
-    gap: 10px;
+    gap: 12px;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
+    padding: 10px 14px;
+
+    background: rgba(255, 255, 255, 0.08); /* Semi-transparent */
+    border: 1px solid rgba(255, 255, 255, 0.15); /* Subtle glassy border */
+    border-radius: 16px;
+
+    backdrop-filter: blur(8px); /* Frosted glass effect */
+    -webkit-backdrop-filter: blur(8px);
+
+    transition: 0.3s ease;
 }
+
+#chat-input:hover {
+    background: rgba(255, 255, 255, 0.12); /* Slightly brighter on hover */
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+
+
+
 
 #message-input {
     flex: 1;
