@@ -5,9 +5,10 @@ html, body {
     font-family: Space Grotesk;
 }
 body {
+
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #6d42d3, #3B82F6);
+    background: linear-gradient(135deg, #8B5CF6, #3B82F6);
     color: white;
     display: flex;
     justify-content: center;
