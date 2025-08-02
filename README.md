@@ -83,6 +83,7 @@ Meet **CATHI**, a platform of **chaotic AI personalities** that make life worse 
 ##bash
 # Clone the repository
 git clone <your-repo-link>
+
 cd uselessgpt
 
 # Install dependencies
@@ -90,6 +91,10 @@ pip install -r requirements.txt
 
 # Run Ollama with LLaMA 3
 ollama run llama3
+
+##RUN
+python app.py
+
 
 
 Diagrams
